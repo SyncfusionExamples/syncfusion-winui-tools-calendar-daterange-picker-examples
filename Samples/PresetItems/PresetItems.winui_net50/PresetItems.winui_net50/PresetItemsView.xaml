@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="PresetItems.PresetItemsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PresetItems"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calendar="using:Syncfusion.UI.Xaml.Calendar"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <local:CalendarDateRangePickerViewModel x:Name="viewModel" />
+    </Page.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.25*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <calendar:SfCalendarDateRangePicker  x:Name="sfCalendarDateRangePicker" Height="35" Width="200"
+                                            Preset="{x:Bind viewModel.PresetCollection, Mode=TwoWay}" >
+            <calendar:SfCalendarDateRangePicker.PresetTemplate>
+                <DataTemplate>
+                    <ListBox ItemsSource="{Binding}" SelectionChanged="ListBox_SelectionChanged" />
+                </DataTemplate>
+            </calendar:SfCalendarDateRangePicker.PresetTemplate>
+        </calendar:SfCalendarDateRangePicker>
+        <CheckBox Height="30" Width="200" Grid.Column="1"
+                      Content="ShowCalendarInDropdown" IsChecked="{x:Bind sfCalendarDateRangePicker.ShowCalendar , Mode=TwoWay}" />
+    </Grid>
+</Page>
