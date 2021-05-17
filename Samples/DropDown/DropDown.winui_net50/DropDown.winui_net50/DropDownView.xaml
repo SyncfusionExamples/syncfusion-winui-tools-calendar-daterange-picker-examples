@@ -1,0 +1,76 @@
+﻿<Page
+    x:Class="DropDown.DropDownView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DropDown"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:core="using:Syncfusion.UI.Xaml.Core" 
+    xmlns:placement="using:Microsoft.UI.Xaml.Controls.Primitives"
+    xmlns:calendar="using:Syncfusion.UI.Xaml.Calendar"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <core:EnumDisplayNameConverter x:Key="enumDisplayNameConverter"/>
+        <DataTemplate x:Key="comboboxItemTemplate">
+            <TextBlock Text="{Binding Converter={StaticResource enumDisplayNameConverter}}"/>
+        </DataTemplate>
+    </Page.Resources>
+    <Page.DataContext>
+        <local:CalerdarDateRangePickerViewModel x:Name="viewModel" />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <calendar:SfCalendarDateRangePicker
+            x:Name="sfCalendarDatePicker"
+            MinWidth="160" 
+            Margin="0,150,0,0"
+            ShowDropDownButton="{x:Bind viewModel.ShowDropDownButton, Mode=TwoWay}"
+            ShowSubmitButtons="{x:Bind viewModel.ShowSubmitButtons, Mode=TwoWay}"
+            DropDownPlacement="{x:Bind viewModel.DropDownPlacement, Mode=TwoWay}" 
+            DropDownHeight="{x:Bind viewModel.DropDownHeight, Mode=TwoWay}" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"/>
+        <ScrollViewer  Grid.Column="1">
+            <StackPanel VerticalAlignment="Center">
+                <CheckBox
+                    Width="180"
+                    HorizontalAlignment="Center"
+                    Margin="2"
+                    Content="ShowDropDownButton"
+                    IsChecked="{x:Bind viewModel.ShowDropDownButton, Mode=TwoWay}" />
+
+                <CheckBox
+                    Width="180"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Content="ShowSubmitButtons"
+                    IsEnabled="{x:Bind viewModel.ShowDropDownButton, Mode=TwoWay}"
+                    IsChecked="{x:Bind viewModel.ShowSubmitButtons, Mode=TwoWay}" />
+
+                <ComboBox
+                    ItemTemplate="{StaticResource comboboxItemTemplate}"
+                    Width="auto"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    Header="EditMode"
+                    ItemsSource="{core:EnumValuesExtension Type=placement:FlyoutPlacementMode}"
+                    SelectedItem="{x:Bind viewModel.DropDownPlacement,Mode=TwoWay}" />
+
+                <Slider
+                    Width="180"
+                    Margin="2"
+                    Header="DropDownHeight"
+                    Maximum="600"
+                    Minimum="200"
+                    IsEnabled="{x:Bind viewModel.ShowDropDownButton, Mode=TwoWay}"
+                    Value="{x:Bind viewModel.DropDownHeight, Mode=TwoWay}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

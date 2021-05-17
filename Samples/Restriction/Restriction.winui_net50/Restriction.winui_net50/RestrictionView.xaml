@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="Restriction.RestrictionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Restriction"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:calendar="using:Syncfusion.UI.Xaml.Calendar" xmlns:core="using:Syncfusion.UI.Xaml.Core"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <local:CalendarDateRangePickerViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <calendar:SfCalendarDateRangePicker
+            VerticalAlignment="Top"
+            HorizontalAlignment="Center"
+            Margin="0,100,0,0"
+            Name="sfCalendarDatePicker"
+            SelectedRange="{Binding SelectedDateRange, Mode=TwoWay}"
+            MinDate="{Binding MinDate, Mode=TwoWay}"
+            MaxDate="{Binding MaxDate, Mode=TwoWay}"
+            MinDisplayMode="{Binding MinDisplayMode, Mode=TwoWay}"
+            MaxDisplayMode="{Binding MaxDisplayMode, Mode=TwoWay}"/>
+        <ScrollViewer 
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center" 
+            Grid.Column="1">
+            <StackPanel>
+                <TextBlock
+                    Margin="5, 5, 5, 2"
+                    Width="180"
+                    Text="MinimumDate"/>
+                <calendar:SfCalendarDatePicker
+                    Margin="5, 0, 5, 5"
+                    Width="180"
+                    SelectedDate="{Binding MinDate, Mode=TwoWay}"/>
+                <TextBlock
+                    Margin="5, 5, 5, 2"
+                    Width="180"
+                    Text="MaximumDate"/>
+                <calendar:SfCalendarDatePicker
+                    Margin="5, 0, 5, 5"
+                    Width="180"
+                    SelectedDate="{Binding MaxDate, Mode=TwoWay}"/>
+                <ComboBox
+                    Margin="5"
+                    Width="180"
+                    Header="MinDisplayMode"
+                    SelectedItem="{Binding MinDisplayMode, Mode=TwoWay}"
+                    ItemsSource="{core:EnumValuesExtension Type=calendar:CalendarDisplayMode}"/>
+                <ComboBox
+                    Margin="5"
+                    Width="180"
+                    Header="MaxDisplayMode"
+                    SelectedItem="{Binding MaxDisplayMode, Mode=TwoWay}"
+                    ItemsSource="{core:EnumValuesExtension Type=calendar:CalendarDisplayMode}"/>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
