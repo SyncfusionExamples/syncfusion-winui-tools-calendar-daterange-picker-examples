@@ -27,6 +27,10 @@
         </DataTemplate>
     </Page.Resources>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <calendar:SfCalendarDateRangePicker
                         x:Name="calendarDateRangePicker"
                         MinWidth="180"
@@ -67,6 +71,61 @@
                                                         Content="{Binding Date}"
                                                         ContentTemplate="{StaticResource customTemplate}"
                                                        />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ResourceDictionary>
+                        </calendar:SfCalendar.Resources>
+                    </calendar:SfCalendar>
+                </editor:DropDownFlyout>
+            </FlyoutBase.AttachedFlyout>
+        </calendar:SfCalendarDateRangePicker>
+        <calendar:SfCalendarDateRangePicker
+                        Grid.Column="1"
+                        x:Name="calendarDateRangePicker1"
+                        MinWidth="180"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+            <FlyoutBase.AttachedFlyout>
+                <editor:DropDownFlyout>
+                    <calendar:SfCalendar SelectionMode="Range" SelectedRange="{x:Bind calendarDateRangePicker1.SelectedRange, Mode=TwoWay}" >
+                        <calendar:SfCalendar.Resources>
+                            <ResourceDictionary>
+                                <SolidColorBrush x:Key="SyncfusionCalendarNavigationButtonForeground"
+                                                     Color="#FF248D92" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarWeekItemForeground"
+                                                     Color="#FF248D92" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarTodayItemForeground"
+                                                     Color="{ThemeResource SystemBaseHighColor}" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarItemBackground"
+                                                     Color="{ThemeResource SystemListLowColor}" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarItemBorderBrush"
+                                                     Color="{ThemeResource SystemListLowColor}"/>
+                                <SolidColorBrush x:Key="SyncfusionCalendarTodayItemBackground"
+                                                     Color="#FF9BC5ED" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarTodayItemBorderBrush"
+                                                     Color="#FF9BC5ED" />
+                                <SolidColorBrush x:Key="SyncfusionCalendarItemOutOfScopeForeground"
+                                                     Color="SlateGray " Opacity="0.5" />
+                                <Thickness x:Key="SyncfusionCalendarItemMargin">1</Thickness>
+                                <x:Double x:Key="SyncfusionBodyFontSize">13</x:Double>
+                                <FontFamily x:Key="SyncfusionControlThemeFontFamily">SimSun</FontFamily>
+                                <x:Double x:Key="SyncfusionSubtitleAltFontSize">16</x:Double>
+                                <Style TargetType="calendar:CalendarItem">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <Grid MinWidth="40" MinHeight="40">
+                                                    <ContentControl
+                                                            HorizontalAlignment="Center"
+                                                            VerticalAlignment="Center"
+                                                            Margin="3"
+                                                            Content="{Binding DisplayText}"/>
                                                 </Grid>
                                             </DataTemplate>
                                         </Setter.Value>
