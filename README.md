@@ -39,3 +39,6 @@ This repository contains the samples that demonstrate the functionalities of Win
   <td><a href="Samples/PresetItems">Hide dropdown calendar</a></td>
  </tr>
 </table>
+
+## Blog reference 
+[Exploring WinUI Calendar Date Picker and Calendar DateRange Picker](https://www.syncfusion.com/blogs/post/exploring-winui-calendar-date-picker-and-calendar-daterange-picker.aspx)
